@@ -6,7 +6,7 @@ namespace MyFirstLambdaFunction
 {
     public class HelloWorld
     {
-        public static string SayHi(ILambdaContext context, string name = "World")
+        public static string SayHi(string name = "World", ILambdaContext context = null)
         {
             var output = $"Hello {(String.IsNullOrEmpty(name) ? "World" : name)} " +
                          $"from {context?.FunctionName ?? "someone unknown"}.";
@@ -16,7 +16,7 @@ namespace MyFirstLambdaFunction
         }
         public static void Main(string[] args)
         {
-            Console.WriteLine(SayHi(null, args.FirstOrDefault()));
+            Console.WriteLine(SayHi(args.FirstOrDefault()));
         }
     }
 }
