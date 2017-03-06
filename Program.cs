@@ -6,16 +6,17 @@ namespace MyFirstLambdaFunction
 {
     public class HelloWorld
     {
-        public static void SayHi(string name = "World", ILambdaContext context = null)
+        public static string SayHi(ILambdaContext context, string name = "World")
         {
-            context.Logger.LogLine($"Hello {(String.IsNullOrEmpty(name) ? "World" : name)}!");
-            context.Logger.LogLine($"The time is {DateTime.UtcNow.ToString("U")}Z.");
-            context.Logger.LogLine($"Function name: {context?.FunctionName ?? "Unavailable"}.");
-            context.Logger.LogLine($"RemainingTime: {context?.RemainingTime.ToString() ?? "Unavailable"}.");
+            var output = $"Hello {(String.IsNullOrEmpty(name) ? "World" : name)} " +
+                         $"from {context?.FunctionName ?? "someone unknown"}.";
+            context?.Logger.LogLine(output);
+            context?.Logger.LogLine($"The time is {DateTime.UtcNow.ToString("U")} UTC.");
+            return output;
         }
         public static void Main(string[] args)
         {
-            SayHi(args.FirstOrDefault());
+            Console.WriteLine(SayHi(null, args.FirstOrDefault()));
         }
     }
 }

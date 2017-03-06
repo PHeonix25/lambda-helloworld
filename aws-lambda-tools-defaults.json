@@ -9,11 +9,14 @@
     ],
 
     "profile": "",
-    "region": "eu-central-1",
+    "region": "eu-west-1", /* "eu-central-1",*/
     "configuration": "Release",
     "framework": "netcoreapp1.0",
+    "function-name": "HelloWorld",
+    "function-handler": "lambda-helloworld::MyFirstLambdaFunction.HelloWorld::SayHi",
+    "function-description": "Just a simple HelloWorld app that accepts a single 'name' parameter",
     "function-runtime": "dotnetcore1.0",
     "function-memory-size": 128,
     "function-timeout": 30,
-    "function-handler": "lambda-helloworld::MyFirstLambdaFunction.HelloWorld::SayHi"
+    "function-publish": "true"
 }
